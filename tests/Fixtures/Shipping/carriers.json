@@ -1,0 +1,91 @@
+{
+    "carriers": [
+        {
+            "id": "aa8c5e19-ab56-425a-b8b8-7564b690a080",
+            "code": "smartpost",
+            "name": "SmartPosti",
+            "logoUrl": "https://public.montonio.com/images/carrier_logos/smartpost.svg",
+            "contracts": null,
+            "hasMontonioContract": true,
+            "supportedContractTypes": ["DIRECT", "MONTONIO"]
+        },
+        {
+            "id": "d292aff8-709e-4d46-9e49-be0a9670eddf",
+            "code": "omniva",
+            "name": "Omniva",
+            "logoUrl": "https://public.montonio.com/images/carrier_logos/omniva.svg",
+            "contracts": [
+                {
+                    "id": "8c804942-4258-4fb1-b1a3-e3ac391f303c",
+                    "carrierId": "d292aff8-709e-4d46-9e49-be0a9670eddf",
+                    "country": "EE",
+                    "lastUsedParcelNumber": null,
+                    "daysAllowedForReturns": null,
+                    "isDirectContract": true,
+                    "createdAt": "2024-05-28T08:00:40.404Z",
+                    "returnsAllowed": false,
+                    "parcelHandoverMethod": null,
+                    "defaultLockerSize": null,
+                    "logisticsContractNumber": null,
+                    "credentials": {
+                        "username": "my_username"
+                    }
+                }
+            ],
+            "hasMontonioContract": true,
+            "supportedContractTypes": ["DIRECT", "MONTONIO"]
+        },
+        {
+            "id": "cc118dac-f9e0-4163-b281-7006fddc08e7",
+            "code": "dpd",
+            "name": "DPD",
+            "logoUrl": "https://public.montonio.com/images/carrier_logos/dpd.svg",
+            "contracts": [
+                {
+                    "id": "b75774ef-e5d0-451b-81be-bf346ed959b1",
+                    "carrierId": "cc118dac-f9e0-4163-b281-7006fddc08e7",
+                    "country": "EE",
+                    "lastUsedParcelNumber": null,
+                    "daysAllowedForReturns": null,
+                    "isDirectContract": true,
+                    "createdAt": "2024-05-29T08:05:23.295Z",
+                    "returnsAllowed": false,
+                    "parcelHandoverMethod": null,
+                    "defaultLockerSize": null,
+                    "logisticsContractNumber": null,
+                    "credentials": {
+                        "username": "my_username"
+                    }
+                }
+            ],
+            "hasMontonioContract": true,
+            "supportedContractTypes": ["DIRECT", "MONTONIO"]
+        },
+        {
+            "id": "8c6fa25b-3ee9-46e1-afd6-570d6b4ec1fe",
+            "code": "venipak",
+            "name": "Venipak",
+            "logoUrl": "https://public.montonio.com/images/carrier_logos/venipak.svg",
+            "contracts": [
+                {
+                    "id": "a74349d7-d1d8-46a8-87d6-c750a6a1343b",
+                    "carrierId": "8c6fa25b-3ee9-46e1-afd6-570d6b4ec1fe",
+                    "country": "EE",
+                    "lastUsedParcelNumber": 12350,
+                    "daysAllowedForReturns": null,
+                    "isDirectContract": true,
+                    "createdAt": "2024-05-28T10:07:34.086Z",
+                    "returnsAllowed": false,
+                    "parcelHandoverMethod": null,
+                    "defaultLockerSize": null,
+                    "logisticsContractNumber": null,
+                    "credentials": {
+                        "username": "my_username"
+                    }
+                }
+            ],
+            "hasMontonioContract": false,
+            "supportedContractTypes": ["DIRECT"]
+        }
+    ]
+}

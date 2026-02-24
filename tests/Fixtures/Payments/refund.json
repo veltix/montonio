@@ -1,0 +1,8 @@
+{
+    "uuid": "97b20084-319a-4cce-92f5-56d3b41a986a",
+    "amount": 25,
+    "status": "PENDING",
+    "currency": "EUR",
+    "createdAt": "2023-05-23T08:37:55.534Z",
+    "type": "PARTIAL_REFUND"
+}

@@ -1,0 +1,28 @@
+{
+    "pickupPoints": [
+        {
+            "id": "98b391d7-5299-447c-9ad7-6b4042ef8b2f",
+            "name": "Laagri Coop Maksimarketi pakiautomaat",
+            "type": "parcelMachine",
+            "streetAddress": "Pärnu mnt 558a",
+            "locality": "Laagri alevik",
+            "postalCode": "96067",
+            "carrierCode": "omniva",
+            "additionalServices": [
+                { "code": "cod" },
+                { "code": "ageVerification" }
+            ]
+        },
+        {
+            "id": "0739f3d5-a500-4f15-8432-a03ed6f82e91",
+            "name": "Laagri Veskitammi Maxima X pakiautomaat",
+            "type": "parcelMachine",
+            "streetAddress": "Veskitammi tn 3",
+            "locality": "Laagri alevik",
+            "postalCode": "96381",
+            "carrierCode": "omniva",
+            "additionalServices": []
+        }
+    ],
+    "countryCode": "EE"
+}

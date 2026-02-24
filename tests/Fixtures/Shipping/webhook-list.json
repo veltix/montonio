@@ -1,0 +1,12 @@
+{
+    "data": [
+        {
+            "id": "92965086-24a3-4fbd-919a-661142210c48",
+            "createdAt": "2024-05-31T14:02:47.780Z",
+            "url": "http://partner.montonio/shipmentEvents",
+            "enabledEvents": [
+                "shipment.registered"
+            ]
+        }
+    ]
+}

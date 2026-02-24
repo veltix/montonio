@@ -1,0 +1,20 @@
+{
+    "payouts": [
+        {
+            "uuid": "671d9d42-7751-4a52-8734-d6eb250c3eea",
+            "storeUuid": "b9ae2ec0-641c-421d-9a78-202bd59614d9",
+            "storeName": "Shared Dev Store",
+            "storeLegalName": "Shared Dev Store LLC",
+            "iban": "MK88001061647941675",
+            "accountName": "Shared Dev Store LLC",
+            "status": "SUCCESSFUL",
+            "settlementType": "montonioMoneyMovement",
+            "paymentsAmount": "43333.00",
+            "refundsAmount": "32500.00",
+            "totalAmount": "130000.00",
+            "currency": "EUR",
+            "expectedArrivalDate": null,
+            "createdAt": "2023-09-20T12:26:06.813Z"
+        }
+    ]
+}

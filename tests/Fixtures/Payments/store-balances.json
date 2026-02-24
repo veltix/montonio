@@ -1,0 +1,25 @@
+{
+    "store": {
+        "uuid": "74e498c8-8d80-4b79-a4ba-ae2c12bbe50d",
+        "name": "ShopName",
+        "legalName": "Shop legal name LLC"
+    },
+    "balances": {
+        "stripe": [
+            {
+                "currency": "EUR",
+                "balance": 0
+            }
+        ],
+        "montonioMoneyMovement": [
+            {
+                "currency": "EUR",
+                "balance": 33
+            },
+            {
+                "currency": "PLN",
+                "balance": 280
+            }
+        ]
+    }
+}

@@ -1,0 +1,79 @@
+{
+    "uuid": "12228dce-2f7c-4db5-8d28-5d82a19aa3b6",
+    "paymentStatus": "PENDING",
+    "locale": "et",
+    "merchantReference": "MY-ORDER-ID-123",
+    "merchantReferenceDisplay": "MY-ORDER-ID-123",
+    "merchantReturnUrl": "https://mystore.com/payment/return",
+    "merchantNotificationUrl": "https://mystore.com/payment/notify",
+    "grandTotal": "99.99",
+    "currency": "EUR",
+    "paymentMethodType": "paymentInitiation",
+    "storeUuid": "703a60eb-ed19-4fc3-8a62-4474150a962a",
+    "paymentIntents": [
+        {
+            "uuid": "302f259c-7501-49ed-b3aa-39a4bbcafec1",
+            "paymentMethodType": "paymentInitiation",
+            "paymentMethodMetadata": {
+                "preferredLocale": "et",
+                "preferredCountry": "EE",
+                "paymentDescription": "Payment for order 123"
+            },
+            "amount": "99.99",
+            "currency": "EUR",
+            "status": "PENDING",
+            "serviceFee": null,
+            "serviceFeeCurrency": "EUR",
+            "createdAt": "2023-12-13T12:02:35.522Z"
+        }
+    ],
+    "refunds": [],
+    "availableForRefund": 0,
+    "isRefundableType": false,
+    "lineItems": [
+        {
+            "name": "Hoverboard",
+            "quantity": 1,
+            "finalPrice": 99.99
+        }
+    ],
+    "billingAddress": {
+        "firstName": "CustomerFirst",
+        "lastName": "CustomerLast",
+        "email": "customer@customer.com",
+        "phoneNumber": null,
+        "phoneCountry": null,
+        "addressLine1": "Kai 1",
+        "addressLine2": null,
+        "locality": "Tallinn",
+        "region": null,
+        "country": "EE",
+        "postalCode": "10111",
+        "companyName": null,
+        "companyLegalName": null,
+        "companyRegCode": null,
+        "companyVatNumber": null
+    },
+    "shippingAddress": {
+        "firstName": "CustomerFirstShipping",
+        "lastName": "CustomerLastShipping",
+        "email": "customer@customer.com",
+        "phoneNumber": null,
+        "phoneCountry": null,
+        "addressLine1": "Kai 1",
+        "addressLine2": null,
+        "locality": "Tallinn",
+        "region": null,
+        "country": "EE",
+        "postalCode": "10111",
+        "companyName": null,
+        "companyLegalName": null,
+        "companyRegCode": null,
+        "companyVatNumber": null
+    },
+    "expiresAt": null,
+    "createdAt": "2023-02-08T13:32:55.099Z",
+    "storeName": "My Store Name",
+    "businessName": "My Business Name",
+    "paymentUrl": "https://stargate.montonio.com/e694c95b-0335-493d-a713-af95720f885d"
+}

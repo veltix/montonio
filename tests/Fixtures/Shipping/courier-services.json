@@ -1,0 +1,14 @@
+{
+    "courierServices": [
+        {
+            "id": "0ffb9b04-3927-462a-a393-4f1e21f2ee55",
+            "name": "Standard",
+            "type": "standard",
+            "carrierCode": "omniva",
+            "additionalServices": [
+                { "code": "cod" }
+            ]
+        }
+    ],
+    "countryCode": "EE"
+}

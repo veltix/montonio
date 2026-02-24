@@ -1,0 +1,82 @@
+{
+    "id": "1f83f4c1-cccc-4dd5-8eae-837e6a88362f",
+    "createdAt": "2024-06-13T08:50:45.376Z",
+    "status": "pending",
+    "montonioOrderUuid": "240b8d02-1b59-4685-87e6-c37ff4a2bacc",
+    "merchantReference": "test 1",
+    "carrierShipmentId": null,
+    "shippingMethod": {
+        "type": "pickupPoint",
+        "id": "377c3b06-0967-4ff2-b28a-372cab234898",
+        "carrierCode": "omniva",
+        "countryCode": "EE"
+    },
+    "sender": {
+        "id": "280d65e9-e9bc-4e41-ac18-1504f1572400",
+        "name": "Sender Y",
+        "companyName": "Company Y",
+        "streetAddress": "Kai 1",
+        "locality": "Tallinn",
+        "region": "Harjumaa",
+        "postalCode": "10111",
+        "country": "EE",
+        "phoneCountryCode": "372",
+        "phoneNumber": "53334770",
+        "email": "support@montonio.com"
+    },
+    "receiver": {
+        "id": "a8c43180-56a8-42c4-bec9-7c50af7e0684",
+        "firstName": null,
+        "lastName": null,
+        "name": "Receiver X",
+        "companyName": "Company X",
+        "streetAddress": "Kai 11",
+        "locality": "Tallinn",
+        "region": "Harjumaa",
+        "postalCode": "10111",
+        "country": "EE",
+        "phoneCountryCode": "372",
+        "phoneNumber": "53334770",
+        "email": "support@montonio.com"
+    },
+    "parcels": [
+        {
+            "id": "ba5184ea-6470-4a2d-b216-2eebc75db40e",
+            "weight": 1,
+            "length": null,
+            "height": null,
+            "width": null,
+            "carrierParcelId": null,
+            "trackingLink": null
+        }
+    ],
+    "store": {
+        "id": "088ae409-ae24-4a3c-a640-5c269f732caa"
+    },
+    "products": [
+        {
+            "id": "f1a2b3c4-d5e6-7890-abcd-ef1234567890",
+            "createdAt": "2024-06-13T08:50:45.376Z",
+            "sku": "PROD-001",
+            "name": "Wireless Headphones",
+            "barcode": null,
+            "quantity": 1,
+            "price": 79.99,
+            "currency": "EUR",
+            "attributes": null,
+            "imageUrl": null
+        },
+        {
+            "id": "a1b2c3d4-e5f6-7890-abcd-ef0987654321",
+            "createdAt": "2024-06-13T08:50:45.376Z",
+            "sku": "PROD-002",
+            "name": "Phone Case",
+            "barcode": null,
+            "quantity": 2,
+            "price": 15.00,
+            "currency": "EUR",
+            "attributes": null,
+            "imageUrl": null
+        }
+    ]
+}

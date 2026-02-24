@@ -1,0 +1,91 @@
+{
+    "uuid": "0ac2124d-9f8e-4a29-816d-7eef5b9bb0fd",
+    "paymentStatus": "PARTIALLY_REFUNDED",
+    "locale": "et",
+    "merchantReference": "MY-ORDER-ID-123",
+    "merchantReferenceDisplay": "MY-ORDER-ID-123",
+    "merchantReturnUrl": "https://mystore.com/payment/return",
+    "merchantNotificationUrl": "https://mystore.com/payment/notify",
+    "grandTotal": "100.00",
+    "currency": "EUR",
+    "paymentMethodType": "cardPayments",
+    "paymentIntents": [
+        {
+            "uuid": "293513c0-66b1-401a-8afa-75e1f5714516",
+            "paymentMethodType": "cardPayments",
+            "paymentMethodMetadata": {},
+            "amount": "100.00",
+            "currency": "EUR",
+            "status": "PAID",
+            "serviceFee": "3.15",
+            "serviceFeeCurrency": "EUR",
+            "createdAt": "2023-05-23T08:22:53.899Z"
+        }
+    ],
+    "refunds": [
+        {
+            "uuid": "92b11684-319a-4cce-92f5-56d348aa986a",
+            "amount": "25",
+            "status": "SUCCESSFUL",
+            "currency": "EUR",
+            "createdAt": "2023-05-23T08:37:55.534Z",
+            "type": "PARTIAL_REFUND"
+        },
+        {
+            "uuid": "8453465a-a9d8-469e-a838-5b2b5b20f429",
+            "amount": "25",
+            "status": "SUCCESSFUL",
+            "currency": "EUR",
+            "createdAt": "2023-05-23T11:03:04.954Z",
+            "type": "PARTIAL_REFUND"
+        }
+    ],
+    "availableForRefund": 50,
+    "isRefundableType": false,
+    "lineItems": [
+        {
+            "name": "Hoverboard",
+            "quantity": 1,
+            "finalPrice": 100
+        }
+    ],
+    "billingAddress": {
+        "firstName": "CustomerFirst",
+        "lastName": "CustomerLast",
+        "email": "test@montonio.com",
+        "phoneNumber": null,
+        "phoneCountry": null,
+        "addressLine1": "Kai 1",
+        "addressLine2": null,
+        "locality": "Tallinn",
+        "region": null,
+        "country": "EE",
+        "postalCode": "10111",
+        "companyName": null,
+        "companyLegalName": null,
+        "companyRegCode": null,
+        "companyVatNumber": null
+    },
+    "shippingAddress": {
+        "firstName": "CustomerFirstShipping",
+        "lastName": "CustomerLastShipping",
+        "email": "test@montonio.com",
+        "phoneNumber": null,
+        "phoneCountry": null,
+        "addressLine1": "Kai 1",
+        "addressLine2": null,
+        "locality": "Tallinn",
+        "region": null,
+        "country": "EE",
+        "postalCode": "10111",
+        "companyName": null,
+        "companyLegalName": null,
+        "companyRegCode": null,
+        "companyVatNumber": null
+    },
+    "expiresAt": null,
+    "createdAt": "2023-05-23T08:22:53.879Z",
+    "storeName": "My Store Name",
+    "businessName": "My Business Name",
+    "paymentUrl": null
+}

@@ -1,0 +1,13 @@
+{
+    "id": "3f922a3a-5063-405b-a489-a2a13a86a13b",
+    "createdAt": "2024-06-13T10:41:22.191Z",
+    "url": "https://webhook.site/305802f7-4bad-4401-b4ee-b4d89aeae6d2",
+    "enabledEvents": [
+        "shipment.registered",
+        "shipment.registrationFailed",
+        "shipment.labelsCreated",
+        "shipment.statusUpdated",
+        "labelFile.ready",
+        "labelFile.creationFailed"
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "id": "d58f2e2f-7460-4916-8463-8644f917b22b",
+    "status": "ready",
+    "pageSize": "A4",
+    "labelsPerPage": 4,
+    "orderLabelsBy": "createdAt",
+    "labelFileUrl": "https://shippingv2-labels-live-production-s3.s3.eu-central-1.amazonaws.com/d58f2e2f-7460-4916-8463-8644f917b22b.pdf"
+}
