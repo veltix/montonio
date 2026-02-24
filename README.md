@@ -503,10 +503,6 @@ src/
 └── Montonio.php                    # Main entry point facade
 ```
 
-## Versioning Strategy
-
-Not determinable from source. No version tags, `CHANGELOG.md`, or release configuration were found.
-
 ## License
 
-MIT (as declared in `composer.json`).
+**Montonio SDK** was created by **[Veltix](https://x.com/veltixofficial)** under the **[MIT license](https://opensource.org/licenses/MIT)**.
