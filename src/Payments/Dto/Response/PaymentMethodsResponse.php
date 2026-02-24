@@ -24,7 +24,7 @@ final readonly class PaymentMethodsResponse
         }
 
         return new self(
-            uuid: $data['id'],
+            uuid: $data['uuid'],
             name: $data['name'],
             paymentMethods: $paymentMethods,
         );

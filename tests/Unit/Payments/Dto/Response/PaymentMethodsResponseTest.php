@@ -9,7 +9,7 @@ use Veltix\Montonio\Payments\Dto\Response\PaymentMethodsResponse;
 
 test('fromArray maps uuid and name', function () {
     $data = [
-        'id' => 'store-uuid-123',
+        'uuid' => 'store-uuid-123',
         'name' => 'My Store',
         'paymentMethods' => [],
     ];
@@ -23,7 +23,7 @@ test('fromArray maps uuid and name', function () {
 
 test('maps payment methods by key', function () {
     $data = [
-        'id' => 'store-1',
+        'uuid' => 'store-1',
         'name' => 'Store',
         'paymentMethods' => [
             'paymentInitiation' => [
@@ -48,7 +48,7 @@ test('maps payment methods by key', function () {
 
 test('maps nested setup with CountryPaymentMethods and BankPaymentMethod', function () {
     $data = [
-        'id' => 'store-1',
+        'uuid' => 'store-1',
         'name' => 'Store',
         'paymentMethods' => [
             'paymentInitiation' => [
@@ -119,8 +119,6 @@ test('PaymentMethodDetail with logoUrl', function () {
 
 test('fromArray with docs fixture maps all countries and banks', function () {
     $data = \Veltix\Montonio\Tests\fixture('Payments/payment-methods.json');
-    $data['id'] = $data['uuid'];
-
     $response = PaymentMethodsResponse::fromArray($data);
 
     expect($response->uuid)->toBe('0bafe86b-c5cf-4c88-ba28-484a8585f0f4')
