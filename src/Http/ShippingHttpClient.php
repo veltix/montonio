@@ -12,6 +12,7 @@ use Veltix\Montonio\Exception\AuthenticationException;
 use Veltix\Montonio\Exception\ConflictException;
 use Veltix\Montonio\Exception\NotFoundException;
 use Veltix\Montonio\Exception\ValidationException;
+use Veltix\Montonio\Support\Json;
 
 final readonly class ShippingHttpClient
 {
@@ -142,7 +143,7 @@ final readonly class ShippingHttpClient
 
         if ($statusCode >= 200 && $statusCode < 300) {
             /** @var array<string, mixed> $decoded */
-            $decoded = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
+            $decoded = Json::decode($body);
 
             return $decoded;
         }

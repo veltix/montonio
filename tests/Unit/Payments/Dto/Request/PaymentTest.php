@@ -12,7 +12,7 @@ use Veltix\Montonio\Payments\Enum\PaymentMethodCode;
 
 test('toArray includes required fields', function () {
     $payment = new Payment(
-        amount: 100.00,
+        amount: '100.00',
         currency: Currency::EUR,
         method: PaymentMethodCode::PaymentInitiation,
     );
@@ -26,7 +26,7 @@ test('toArray includes required fields', function () {
 
 test('toArray includes methodDisplay when set', function () {
     $payment = new Payment(
-        amount: 50.00,
+        amount: '50.00',
         currency: Currency::PLN,
         method: PaymentMethodCode::Blik,
         methodDisplay: 'BLIK',
@@ -38,7 +38,7 @@ test('toArray includes methodDisplay when set', function () {
 
 test('toArray includes methodOptions when set', function () {
     $payment = new Payment(
-        amount: 75.00,
+        amount: '75.00',
         currency: Currency::EUR,
         method: PaymentMethodCode::PaymentInitiation,
         methodOptions: new PaymentInitiationOptions(preferredProvider: 'SWEDBANK'),
@@ -49,7 +49,7 @@ test('toArray includes methodOptions when set', function () {
 });
 
 test('toArray excludes null optional fields', function () {
-    $payment = new Payment(amount: 10.00, currency: Currency::EUR, method: PaymentMethodCode::CardPayments);
+    $payment = new Payment(amount: '10.00', currency: Currency::EUR, method: PaymentMethodCode::CardPayments);
 
     $array = $payment->toArray();
     expect($array)->not->toHaveKey('methodDisplay')
@@ -107,7 +107,7 @@ test('fromArray with Bnpl options', function () {
 
 test('roundtrip toArray/fromArray with options', function () {
     $original = new Payment(
-        amount: 99.99,
+        amount: '99.99',
         currency: Currency::EUR,
         method: PaymentMethodCode::PaymentInitiation,
         methodDisplay: 'Bank Transfer',
@@ -116,7 +116,7 @@ test('roundtrip toArray/fromArray with options', function () {
 
     $restored = Payment::fromArray($original->toArray());
 
-    expect($restored->amount)->toBe($original->amount)
+    expect($restored->amount)->toEqual($original->amount)
         ->and($restored->currency)->toBe($original->currency)
         ->and($restored->method)->toBe($original->method)
         ->and($restored->methodDisplay)->toBe($original->methodDisplay)

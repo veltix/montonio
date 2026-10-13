@@ -12,7 +12,7 @@ use Veltix\Montonio\Exception\ValidationException;
 
 test('MontonioException extends RuntimeException', function () {
     $e = new MontonioException;
-    expect($e)->toBeInstanceOf(\RuntimeException::class);
+    expect($e)->toBeInstanceOf(RuntimeException::class);
 });
 
 test('stores statusCode and responseBody', function () {
@@ -29,7 +29,7 @@ test('stores statusCode and responseBody', function () {
 });
 
 test('stores previous exception', function () {
-    $prev = new \RuntimeException('original');
+    $prev = new RuntimeException('original');
     $e = new MontonioException(message: 'wrapped', previous: $prev);
 
     expect($e->getPrevious())->toBe($prev);
@@ -60,7 +60,7 @@ test('subtypes extend MontonioException', function (string $class) {
     );
 
     expect($e)->toBeInstanceOf(MontonioException::class)
-        ->and($e)->toBeInstanceOf(\RuntimeException::class)
+        ->and($e)->toBeInstanceOf(RuntimeException::class)
         ->and($e->statusCode)->toBe(400)
         ->and($e->responseBody)->toBe('body');
 })->with('exception_subtypes');

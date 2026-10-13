@@ -6,13 +6,14 @@ namespace Veltix\Montonio\Payments\Dto\Request;
 
 use Veltix\Montonio\Payments\Enum\Currency;
 use Veltix\Montonio\Payments\Enum\Locale;
+use Veltix\Montonio\Support\Decimal;
 
 final readonly class CreatePaymentLinkRequest
 {
     public function __construct(
         public string $description,
         public Currency $currency,
-        public float $amount,
+        public string $amount,
         public Locale $locale,
         public bool $askAdditionalInfo,
         public string $expiresAt,
@@ -31,7 +32,7 @@ final readonly class CreatePaymentLinkRequest
         $data = [
             'description' => $this->description,
             'currency' => $this->currency->value,
-            'amount' => $this->amount,
+            'amount' => Decimal::toNumber($this->amount),
             'locale' => $this->locale->value,
             'askAdditionalInfo' => $this->askAdditionalInfo,
             'expiresAt' => $this->expiresAt,
@@ -74,7 +75,7 @@ final readonly class CreatePaymentLinkRequest
         return new self(
             description: $data['description'],
             currency: Currency::from($data['currency']),
-            amount: (float) $data['amount'],
+            amount: Decimal::fromValue($data['amount']),
             locale: Locale::from($data['locale']),
             askAdditionalInfo: (bool) $data['askAdditionalInfo'],
             expiresAt: $data['expiresAt'],

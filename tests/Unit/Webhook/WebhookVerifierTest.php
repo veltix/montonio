@@ -42,7 +42,7 @@ test('verifyPaymentWebhook decodes and returns typed DTO', function () {
         ->and($result->accessKey)->toBe('test_access_key')
         ->and($result->merchantReference)->toBe('ref-001')
         ->and($result->paymentStatus)->toBe(PaymentStatus::PAID)
-        ->and($result->grandTotal)->toBe(100.50)
+        ->and($result->grandTotal)->toBe('100.5')
         ->and($result->currency)->toBe('EUR')
         ->and($result->senderIban)->toBe('EE123456')
         ->and($result->senderName)->toBe('John Doe')
@@ -81,4 +81,4 @@ test('verifyPaymentWebhook throws on invalid token', function () {
     $verifier = new WebhookVerifier($decoder);
 
     $verifier->verifyPaymentWebhook('invalid.token.here');
-})->throws(\Exception::class);
+})->throws(Exception::class);

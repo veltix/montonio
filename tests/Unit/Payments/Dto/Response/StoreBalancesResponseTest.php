@@ -44,8 +44,8 @@ test('BalanceEntry has correct types', function () {
 
     expect($entry)->toBeInstanceOf(BalanceEntry::class)
         ->and($entry->currency)->toBe('EUR')
-        ->and($entry->balance)->toBe(123.45)
-        ->and($entry->balance)->toBeFloat();
+        ->and($entry->balance)->toBe('123.45')
+        ->and($entry->balance)->toBeString();
 });
 
 test('balance values are cast to float', function () {
@@ -58,8 +58,8 @@ test('balance values are cast to float', function () {
         ],
     ]);
 
-    expect($response->balances['test'][0]->balance)->toBe(99.0)
-        ->and($response->balances['test'][0]->balance)->toBeFloat();
+    expect($response->balances['test'][0]->balance)->toBe('99')
+        ->and($response->balances['test'][0]->balance)->toBeString();
 });
 
 test('fromArray with docs fixture', function () {
@@ -74,9 +74,9 @@ test('fromArray with docs fixture', function () {
         ->and($response->balances)->toHaveKey('montonioMoneyMovement')
         ->and($response->balances['stripe'])->toHaveCount(1)
         ->and($response->balances['stripe'][0]->currency)->toBe('EUR')
-        ->and($response->balances['stripe'][0]->balance)->toBe(0.0)
+        ->and($response->balances['stripe'][0]->balance)->toBe('0')
         ->and($response->balances['montonioMoneyMovement'])->toHaveCount(2)
-        ->and($response->balances['montonioMoneyMovement'][0]->balance)->toBe(33.0)
+        ->and($response->balances['montonioMoneyMovement'][0]->balance)->toBe('33')
         ->and($response->balances['montonioMoneyMovement'][1]->currency)->toBe('PLN')
-        ->and($response->balances['montonioMoneyMovement'][1]->balance)->toBe(280.0);
+        ->and($response->balances['montonioMoneyMovement'][1]->balance)->toBe('280');
 });

@@ -17,7 +17,7 @@ test('fromArray maps all fields', function () {
     ]);
 
     expect($response->uuid)->toBe('refund-uuid-1')
-        ->and($response->amount)->toBe(25.50)
+        ->and($response->amount)->toBe('25.50')
         ->and($response->currency)->toBe('EUR')
         ->and($response->createdAt)->toBe('2025-01-15T10:00:00Z');
 });
@@ -53,7 +53,7 @@ test('fromArray with docs fixture', function () {
     $response = RefundResponse::fromArray($data);
 
     expect($response->uuid)->toBe('97b20084-319a-4cce-92f5-56d3b41a986a')
-        ->and($response->amount)->toBe(25.0)
+        ->and($response->amount)->toBe('25')
         ->and($response->status)->toBe(RefundStatus::PENDING)
         ->and($response->currency)->toBe('EUR')
         ->and($response->createdAt)->toBe('2023-05-23T08:37:55.534Z')

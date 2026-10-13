@@ -75,7 +75,7 @@ test('ShippingMethod maps subtypes and constraints', function () {
     expect($method->subtypes)->toHaveCount(2)
         ->and($method->subtypes[0])->toBeInstanceOf(ShippingMethodSubtype::class)
         ->and($method->subtypes[0]->code)->toBe('parcelMachine')
-        ->and($method->subtypes[0]->rate)->toBe(2.99)
+        ->and($method->subtypes[0]->rate)->toBe('2.99')
         ->and($method->subtypes[0]->currency)->toBe('EUR')
         ->and($method->subtypes[1]->code)->toBe('postOffice')
         ->and($method->constraints)->toBeInstanceOf(ShippingMethodConstraints::class)

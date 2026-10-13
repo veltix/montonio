@@ -7,6 +7,7 @@ namespace Veltix\Montonio\Payments\Dto\Response;
 use Veltix\Montonio\Payments\Dto\Request\Address;
 use Veltix\Montonio\Payments\Dto\Request\LineItem;
 use Veltix\Montonio\Payments\Enum\PaymentStatus;
+use Veltix\Montonio\Support\Decimal;
 
 final readonly class OrderResponse
 {
@@ -29,7 +30,7 @@ final readonly class OrderResponse
         public ?string $storeUuid,
         public array $paymentIntents,
         public array $refunds,
-        public float $availableForRefund,
+        public string $availableForRefund,
         public bool $isRefundableType,
         public ?array $lineItems,
         public ?Address $billingAddress,
@@ -52,7 +53,7 @@ final readonly class OrderResponse
             merchantReferenceDisplay: $data['merchantReferenceDisplay'] ?? null,
             merchantReturnUrl: $data['merchantReturnUrl'] ?? null,
             merchantNotificationUrl: $data['merchantNotificationUrl'] ?? null,
-            grandTotal: (string) $data['grandTotal'],
+            grandTotal: Decimal::fromValue($data['grandTotal']),
             currency: $data['currency'],
             paymentMethodType: $data['paymentMethodType'] ?? null,
             storeUuid: $data['storeUuid'] ?? null,
@@ -64,7 +65,7 @@ final readonly class OrderResponse
                 fn (array $refund) => Refund::fromArray($refund),
                 $data['refunds'] ?? [],
             ),
-            availableForRefund: (float) ($data['availableForRefund'] ?? 0),
+            availableForRefund: Decimal::fromValue($data['availableForRefund'] ?? 0),
             isRefundableType: (bool) ($data['isRefundableType'] ?? false),
             lineItems: isset($data['lineItems']) ? array_map(
                 fn (array $item) => LineItem::fromArray($item),

@@ -10,7 +10,7 @@ test('toArray includes required fields', function () {
     $request = new CreatePaymentLinkRequest(
         description: 'Test payment',
         currency: Currency::EUR,
-        amount: 10.00,
+        amount: '10.00',
         locale: Locale::EN,
         askAdditionalInfo: false,
         expiresAt: '2025-12-31T23:59:59Z',
@@ -31,7 +31,7 @@ test('toArray includes optional fields when set', function () {
     $request = new CreatePaymentLinkRequest(
         description: 'Full test',
         currency: Currency::PLN,
-        amount: 99.99,
+        amount: '99.99',
         locale: Locale::PL,
         askAdditionalInfo: true,
         expiresAt: '2025-06-15T12:00:00Z',
@@ -55,7 +55,7 @@ test('toArray excludes null optional fields', function () {
     $request = new CreatePaymentLinkRequest(
         description: 'Test',
         currency: Currency::EUR,
-        amount: 5.00,
+        amount: '5.00',
         locale: Locale::ET,
         askAdditionalInfo: false,
         expiresAt: '2025-01-01T00:00:00Z',
@@ -89,7 +89,7 @@ test('fromArray creates request with all fields', function () {
 
     expect($request->description)->toBe('From array')
         ->and($request->currency)->toBe(Currency::EUR)
-        ->and($request->amount)->toBe(50.00)
+        ->and($request->amount)->toBe('50.00')
         ->and($request->locale)->toBe(Locale::EN)
         ->and($request->askAdditionalInfo)->toBeTrue()
         ->and($request->type)->toBe('multi')
@@ -100,7 +100,7 @@ test('roundtrip toArray/fromArray', function () {
     $original = new CreatePaymentLinkRequest(
         description: 'Roundtrip',
         currency: Currency::EUR,
-        amount: 25.00,
+        amount: '25.00',
         locale: Locale::LT,
         askAdditionalInfo: false,
         expiresAt: '2025-06-01T00:00:00Z',
@@ -111,7 +111,7 @@ test('roundtrip toArray/fromArray', function () {
 
     expect($restored->description)->toBe($original->description)
         ->and($restored->currency)->toBe($original->currency)
-        ->and($restored->amount)->toBe($original->amount)
+        ->and((float) $restored->amount)->toBe((float) $original->amount)
         ->and($restored->locale)->toBe($original->locale)
         ->and($restored->merchantReference)->toBe($original->merchantReference)
         ->and($restored->type)->toBeNull();

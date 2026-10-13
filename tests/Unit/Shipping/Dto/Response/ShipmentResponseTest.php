@@ -105,8 +105,8 @@ test('maps parcels', function () {
 
     expect($response->parcels)->toHaveCount(1)
         ->and($response->parcels[0])->toBeInstanceOf(ShipmentParcelResponse::class)
-        ->and($response->parcels[0]->weight)->toBe(1.5)
-        ->and($response->parcels[0]->height)->toBe(10.0);
+        ->and($response->parcels[0]->weight)->toBe('1.5')
+        ->and($response->parcels[0]->height)->toBe('10');
 });
 
 test('maps shipping method response', function () {
@@ -128,7 +128,7 @@ test('maps store and products', function () {
         ->and($response->products)->toHaveCount(1)
         ->and($response->products[0])->toBeInstanceOf(ShipmentProductResponse::class)
         ->and($response->products[0]->sku)->toBe('SKU-001')
-        ->and($response->products[0]->price)->toBe(9.99);
+        ->and($response->products[0]->price)->toBe('9.99');
 });
 
 test('handles null products', function () {
@@ -166,14 +166,14 @@ test('fromArray with docs shipment-created fixture', function () {
         ->and($response->receiver->name)->toBe('Receiver X')
         ->and($response->receiver->email)->toBe('support@montonio.com')
         ->and($response->parcels)->toHaveCount(1)
-        ->and($response->parcels[0]->weight)->toBe(1.0)
+        ->and($response->parcels[0]->weight)->toBe('1')
         ->and($response->shippingMethod->type)->toBe('pickupPoint')
         ->and($response->shippingMethod->id)->toBe('377c3b06-0967-4ff2-b28a-372cab234898')
         ->and($response->store->id)->toBe('088ae409-ae24-4a3c-a640-5c269f732caa')
         ->and($response->products)->toHaveCount(2)
         ->and($response->products[0]->sku)->toBe('PROD-001')
         ->and($response->products[0]->name)->toBe('Wireless Headphones')
-        ->and($response->products[0]->price)->toBe(79.99)
+        ->and($response->products[0]->price)->toBe('79.99')
         ->and($response->products[1]->sku)->toBe('PROD-002')
         ->and($response->products[1]->quantity)->toBe(2);
 });

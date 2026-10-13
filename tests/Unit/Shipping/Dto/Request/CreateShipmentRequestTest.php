@@ -21,7 +21,7 @@ test('toArray includes required nested fields', function () {
             phoneCountryCode: '+372',
             phoneNumber: '5551234',
         ),
-        parcels: [new ShipmentParcel(weight: 1.5)],
+        parcels: [new ShipmentParcel(weight: '1.5')],
     );
 
     $array = $request->toArray();
@@ -36,7 +36,7 @@ test('toArray includes optional fields when set', function () {
     $request = new CreateShipmentRequest(
         shippingMethod: new ShipmentShippingMethod(type: ShippingMethodType::Courier, id: 'c-1'),
         receiver: new ShipmentReceiver(name: 'Jane', phoneCountryCode: '+370', phoneNumber: '600123'),
-        parcels: [new ShipmentParcel(weight: 2.0)],
+        parcels: [new ShipmentParcel(weight: '2.0')],
         sender: new ShipmentSender(name: 'Warehouse', phoneCountryCode: '+372', phoneNumber: '1234567'),
         merchantReference: 'order-456',
         montonioOrderUuid: 'mont-uuid-1',
@@ -60,7 +60,7 @@ test('toArray filters null optional fields', function () {
     $request = new CreateShipmentRequest(
         shippingMethod: new ShipmentShippingMethod(type: ShippingMethodType::Courier, id: 'c-1'),
         receiver: new ShipmentReceiver(name: 'Test', phoneCountryCode: '+1', phoneNumber: '555'),
-        parcels: [new ShipmentParcel(weight: 1.0)],
+        parcels: [new ShipmentParcel(weight: '1.0')],
     );
 
     $array = $request->toArray();
@@ -108,11 +108,11 @@ test('fromArray creates full request', function () {
         ->and($request->receiver->name)->toBe('John Doe')
         ->and($request->receiver->email)->toBe('john@example.com')
         ->and($request->parcels)->toHaveCount(1)
-        ->and($request->parcels[0]->height)->toBe(10.0)
+        ->and($request->parcels[0]->height)->toBe('10')
         ->and($request->sender->name)->toBe('Warehouse')
         ->and($request->merchantReference)->toBe('order-ref')
         ->and($request->products)->toHaveCount(1)
-        ->and($request->products[0]->price)->toBe(9.99)
+        ->and($request->products[0]->price)->toBe('9.99')
         ->and($request->synchronous)->toBeTrue();
 });
 
@@ -136,7 +136,7 @@ test('roundtrip toArray/fromArray', function () {
         shippingMethod: new ShipmentShippingMethod(type: ShippingMethodType::Courier, id: 'courier-1'),
         receiver: new ShipmentReceiver(name: 'Test User', phoneCountryCode: '+372', phoneNumber: '5556789', email: 'test@test.com'),
         parcels: [
-            new ShipmentParcel(weight: 2.5, height: 15.0, width: 25.0, length: 35.0),
+            new ShipmentParcel(weight: '2.5', height: '15.0', width: '25.0', length: '35.0'),
         ],
         merchantReference: 'roundtrip-ref',
     );
@@ -148,6 +148,6 @@ test('roundtrip toArray/fromArray', function () {
         ->and($restored->receiver->name)->toBe($original->receiver->name)
         ->and($restored->receiver->email)->toBe('test@test.com')
         ->and($restored->parcels)->toHaveCount(1)
-        ->and($restored->parcels[0]->weight)->toBe(2.5)
+        ->and($restored->parcels[0]->weight)->toBe('2.5')
         ->and($restored->merchantReference)->toBe('roundtrip-ref');
 });

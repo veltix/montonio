@@ -14,7 +14,7 @@ test('toArray includes destination and parcels', function () {
         parcels: [
             new RatesParcel(
                 items: [
-                    new RatesItem(length: 30.0, width: 20.0, height: 10.0, weight: 1.5),
+                    new RatesItem(length: '30.0', width: '20.0', height: '10.0', weight: '1.5'),
                 ],
             ),
         ],
@@ -29,10 +29,10 @@ test('toArray includes destination and parcels', function () {
 
 test('RatesItem includes optional enums', function () {
     $item = new RatesItem(
-        length: 10.0,
-        width: 10.0,
-        height: 10.0,
-        weight: 0.5,
+        length: '10.0',
+        width: '10.0',
+        height: '10.0',
+        weight: '0.5',
         dimensionUnit: DimensionUnit::Cm,
         weightUnit: WeightUnit::Kg,
         quantity: 2,
@@ -45,7 +45,7 @@ test('RatesItem includes optional enums', function () {
 });
 
 test('RatesItem excludes null optional fields', function () {
-    $item = new RatesItem(length: 10.0, width: 10.0, height: 10.0, weight: 0.5);
+    $item = new RatesItem(length: '10.0', width: '10.0', height: '10.0', weight: '0.5');
 
     $array = $item->toArray();
     expect($array)->not->toHaveKey('dimensionUnit')
@@ -60,10 +60,10 @@ test('roundtrip toArray/fromArray', function () {
             new RatesParcel(
                 items: [
                     new RatesItem(
-                        length: 20.0,
-                        width: 15.0,
-                        height: 10.0,
-                        weight: 2.0,
+                        length: '20.0',
+                        width: '15.0',
+                        height: '10.0',
+                        weight: '2.0',
                         dimensionUnit: DimensionUnit::M,
                         weightUnit: WeightUnit::G,
                         quantity: 3,

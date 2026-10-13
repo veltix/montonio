@@ -3,6 +3,9 @@
 declare(strict_types=1);
 
 use Psr\Http\Client\ClientExceptionInterface;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Veltix\Montonio\Exception\TransportException;
 use Veltix\Montonio\Http\HttpClient;
 
@@ -55,13 +58,13 @@ test('returns PSR response', function () {
 });
 
 test('wraps ClientExceptionInterface in TransportException', function () {
-    $clientException = new class('Connection failed') extends \RuntimeException implements ClientExceptionInterface {};
+    $clientException = new class('Connection failed') extends RuntimeException implements ClientExceptionInterface {};
 
-    $psrClient = new class($clientException) implements \Psr\Http\Client\ClientInterface
+    $psrClient = new class($clientException) implements ClientInterface
     {
-        public function __construct(private \Throwable $e) {}
+        public function __construct(private Throwable $e) {}
 
-        public function sendRequest(\Psr\Http\Message\RequestInterface $request): \Psr\Http\Message\ResponseInterface
+        public function sendRequest(RequestInterface $request): ResponseInterface
         {
             throw $this->e;
         }

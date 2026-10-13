@@ -54,4 +54,4 @@ test('throws on invalid token', function () {
     $decoder = new JwtDecoder($config);
 
     $decoder->decode('invalid.token.here');
-})->throws(\Exception::class);
+})->throws(Exception::class);

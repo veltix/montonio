@@ -16,7 +16,7 @@ final readonly class WebhookVerifier
 
     public function verifyPaymentWebhook(string $orderToken): PaymentWebhookPayload
     {
-        /** @var object{uuid: string, accessKey: string, merchantReference: string, merchantReferenceDisplay?: string, paymentStatus: string, paymentMethod?: string, grandTotal: float|int|string, currency: string, senderIban?: string, senderName?: string, paymentProviderName?: string, paymentLinkUuid?: string, iat: int, exp: int} $decoded */
+        /** @var object{uuid: string, accessKey: string, merchantReference: string, merchantReferenceDisplay?: string, paymentStatus: string, paymentMethod?: string, grandTotal: int|string, currency: string, senderIban?: string, senderName?: string, paymentProviderName?: string, paymentLinkUuid?: string, iat: int, exp: int} $decoded */
         $decoded = $this->jwtDecoder->decode($orderToken);
 
         return PaymentWebhookPayload::fromObject($decoded);

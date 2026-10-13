@@ -17,7 +17,7 @@ test('toArray is empty when all null', function () {
 test('toArray includes only non-null fields', function () {
     $request = new UpdateShipmentRequest(
         receiver: new ShipmentReceiver(name: 'Updated', phoneCountryCode: '+372', phoneNumber: '999'),
-        parcels: [new ShipmentParcel(weight: 3.0)],
+        parcels: [new ShipmentParcel(weight: '3.0')],
     );
 
     $array = $request->toArray();

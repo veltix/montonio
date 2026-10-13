@@ -57,13 +57,13 @@ test('EstimatedParcel maps all fields', function () {
     $parcel = $response->calculationDetails->estimatedParcels[0];
 
     expect($parcel)->toBeInstanceOf(EstimatedParcel::class)
-        ->and($parcel->length)->toBe(30.0)
-        ->and($parcel->width)->toBe(20.0)
-        ->and($parcel->height)->toBe(10.0)
+        ->and($parcel->length)->toBe('30')
+        ->and($parcel->width)->toBe('20')
+        ->and($parcel->height)->toBe('10')
         ->and($parcel->dimensionUnit)->toBe('cm')
-        ->and($parcel->actualWeight)->toBe(1.5)
-        ->and($parcel->volumetricWeight)->toBe(1.0)
-        ->and($parcel->chargeableWeight)->toBe(1.5)
+        ->and($parcel->actualWeight)->toBe('1.5')
+        ->and($parcel->volumetricWeight)->toBe('1')
+        ->and($parcel->chargeableWeight)->toBe('1.5')
         ->and($parcel->weightUnit)->toBe('kg')
         ->and($parcel->bufferApplied)->toBeFalse();
 });
@@ -86,16 +86,16 @@ test('RateSubtype maps with float cast', function () {
     expect($subtypes)->toHaveCount(2)
         ->and($subtypes[0])->toBeInstanceOf(RateSubtype::class)
         ->and($subtypes[0]->code)->toBe('parcelMachine')
-        ->and($subtypes[0]->rate)->toBe(2.99)
-        ->and($subtypes[0]->rate)->toBeFloat()
+        ->and($subtypes[0]->rate)->toBe('2.99')
+        ->and($subtypes[0]->rate)->toBeString()
         ->and($subtypes[0]->currency)->toBe('EUR');
 });
 
 test('RateSubtype handles string rate values', function () {
     $subtype = RateSubtype::fromArray(['code' => 'test', 'rate' => '5', 'currency' => 'PLN']);
 
-    expect($subtype->rate)->toBe(5.0)
-        ->and($subtype->rate)->toBeFloat();
+    expect($subtype->rate)->toBe('5')
+        ->and($subtype->rate)->toBeString();
 });
 
 test('fromArray with docs fixture', function () {
@@ -106,13 +106,13 @@ test('fromArray with docs fixture', function () {
         ->and($response->calculationDetails->estimatedParcels)->toHaveCount(1);
 
     $parcel = $response->calculationDetails->estimatedParcels[0];
-    expect($parcel->length)->toBe(20.0)
-        ->and($parcel->width)->toBe(15.0)
-        ->and($parcel->height)->toBe(10.0)
+    expect($parcel->length)->toBe('20')
+        ->and($parcel->width)->toBe('15')
+        ->and($parcel->height)->toBe('10')
         ->and($parcel->dimensionUnit)->toBe('cm')
-        ->and($parcel->actualWeight)->toBe(0.5)
-        ->and($parcel->volumetricWeight)->toBe(0.75)
-        ->and($parcel->chargeableWeight)->toBe(0.75);
+        ->and($parcel->actualWeight)->toBe('0.5')
+        ->and($parcel->volumetricWeight)->toBe('0.75')
+        ->and($parcel->chargeableWeight)->toBe('0.75');
 
     expect($response->carriers)->toHaveCount(2);
 
@@ -121,10 +121,10 @@ test('fromArray with docs fixture', function () {
         ->and($omniva->shippingMethods[0]->type)->toBe('pickupPoint')
         ->and($omniva->shippingMethods[0]->subtypes)->toHaveCount(2)
         ->and($omniva->shippingMethods[0]->subtypes[0]->code)->toBe('parcelMachine')
-        ->and($omniva->shippingMethods[0]->subtypes[0]->rate)->toBe(2.50)
+        ->and($omniva->shippingMethods[0]->subtypes[0]->rate)->toBe('2.50')
         ->and($omniva->shippingMethods[0]->subtypes[0]->currency)->toBe('EUR');
 
     $dpd = $response->carriers[1];
     expect($dpd->carrierCode)->toBe('dpd')
-        ->and($dpd->shippingMethods[0]->subtypes[0]->rate)->toBe(3.0);
+        ->and($dpd->shippingMethods[0]->subtypes[0]->rate)->toBe('3.00');
 });

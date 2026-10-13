@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Veltix\Montonio\Payments\Dto\Request;
 
+use Veltix\Montonio\Support\Decimal;
+
 final readonly class CreateRefundRequest
 {
     public function __construct(
         public string $orderUuid,
-        public float $amount,
+        public string $amount,
         public string $idempotencyKey,
     ) {}
 
@@ -17,7 +19,7 @@ final readonly class CreateRefundRequest
     {
         return [
             'orderUuid' => $this->orderUuid,
-            'amount' => $this->amount,
+            'amount' => Decimal::toNumber($this->amount),
             'idempotencyKey' => $this->idempotencyKey,
         ];
     }
@@ -27,7 +29,7 @@ final readonly class CreateRefundRequest
     {
         return new self(
             orderUuid: $data['orderUuid'],
-            amount: (float) $data['amount'],
+            amount: Decimal::fromValue($data['amount']),
             idempotencyKey: $data['idempotencyKey'],
         );
     }

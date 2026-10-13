@@ -6,14 +6,15 @@ namespace Veltix\Montonio\Shipping\Dto\Request;
 
 use Veltix\Montonio\Shipping\Enum\DimensionUnit;
 use Veltix\Montonio\Shipping\Enum\WeightUnit;
+use Veltix\Montonio\Support\Decimal;
 
 final readonly class RatesItem
 {
     public function __construct(
-        public float $length,
-        public float $width,
-        public float $height,
-        public float $weight,
+        public string $length,
+        public string $width,
+        public string $height,
+        public string $weight,
         public ?DimensionUnit $dimensionUnit = null,
         public ?WeightUnit $weightUnit = null,
         public ?int $quantity = null,
@@ -23,10 +24,10 @@ final readonly class RatesItem
     public function toArray(): array
     {
         $data = [
-            'length' => $this->length,
-            'width' => $this->width,
-            'height' => $this->height,
-            'weight' => $this->weight,
+            'length' => Decimal::toNumber($this->length),
+            'width' => Decimal::toNumber($this->width),
+            'height' => Decimal::toNumber($this->height),
+            'weight' => Decimal::toNumber($this->weight),
         ];
 
         if ($this->dimensionUnit !== null) {
@@ -48,10 +49,10 @@ final readonly class RatesItem
     public static function fromArray(array $data): self
     {
         return new self(
-            length: (float) $data['length'],
-            width: (float) $data['width'],
-            height: (float) $data['height'],
-            weight: (float) $data['weight'],
+            length: Decimal::fromValue($data['length']),
+            width: Decimal::fromValue($data['width']),
+            height: Decimal::fromValue($data['height']),
+            weight: Decimal::fromValue($data['weight']),
             dimensionUnit: isset($data['dimensionUnit']) ? DimensionUnit::from($data['dimensionUnit']) : null,
             weightUnit: isset($data['weightUnit']) ? WeightUnit::from($data['weightUnit']) : null,
             quantity: $data['quantity'] ?? null,
