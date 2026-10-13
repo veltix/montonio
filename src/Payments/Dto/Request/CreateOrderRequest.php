@@ -6,6 +6,7 @@ namespace Veltix\Montonio\Payments\Dto\Request;
 
 use Veltix\Montonio\Payments\Enum\Currency;
 use Veltix\Montonio\Payments\Enum\Locale;
+use Veltix\Montonio\Support\Decimal;
 
 final readonly class CreateOrderRequest
 {
@@ -16,7 +17,7 @@ final readonly class CreateOrderRequest
         public string $merchantReference,
         public string $returnUrl,
         public string $notificationUrl,
-        public float $grandTotal,
+        public string $grandTotal,
         public Currency $currency,
         public Locale $locale,
         public Payment $payment,
@@ -34,7 +35,7 @@ final readonly class CreateOrderRequest
             'merchantReference' => $this->merchantReference,
             'returnUrl' => $this->returnUrl,
             'notificationUrl' => $this->notificationUrl,
-            'grandTotal' => $this->grandTotal,
+            'grandTotal' => Decimal::toNumber($this->grandTotal),
             'currency' => $this->currency->value,
             'locale' => $this->locale->value,
             'payment' => $this->payment->toArray(),
@@ -73,7 +74,7 @@ final readonly class CreateOrderRequest
             merchantReference: $data['merchantReference'],
             returnUrl: $data['returnUrl'],
             notificationUrl: $data['notificationUrl'],
-            grandTotal: (float) $data['grandTotal'],
+            grandTotal: Decimal::fromValue($data['grandTotal']),
             currency: Currency::from($data['currency']),
             locale: Locale::from($data['locale']),
             payment: Payment::fromArray($data['payment']),

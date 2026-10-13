@@ -67,24 +67,24 @@ test('ShipmentReceiver fromArray and roundtrip', function () {
 });
 
 test('ShipmentParcel toArray filters null dimensions', function () {
-    $parcel = new ShipmentParcel(weight: 1.5);
+    $parcel = new ShipmentParcel(weight: '1.5');
 
     expect($parcel->toArray())->toBe(['weight' => 1.5]);
 
-    $full = new ShipmentParcel(weight: 2.0, height: 10.0, width: 20.0, length: 30.0);
+    $full = new ShipmentParcel(weight: '2.0', height: '10.0', width: '20.0', length: '30.0');
     expect($full->toArray())->toBe(['weight' => 2.0, 'height' => 10.0, 'width' => 20.0, 'length' => 30.0]);
 });
 
 test('ShipmentParcel fromArray and roundtrip', function () {
     $parcel = ShipmentParcel::fromArray(['weight' => 3.0, 'height' => 5.0]);
 
-    expect($parcel->weight)->toBe(3.0)
-        ->and($parcel->height)->toBe(5.0)
+    expect($parcel->weight)->toBe('3')
+        ->and($parcel->height)->toBe('5')
         ->and($parcel->width)->toBeNull();
 
     $restored = ShipmentParcel::fromArray($parcel->toArray());
-    expect($restored->weight)->toBe(3.0)
-        ->and($restored->height)->toBe(5.0);
+    expect($restored->weight)->toBe('3')
+        ->and($restored->height)->toBe('5');
 });
 
 test('ShipmentProduct toArray includes required and optional fields', function () {
@@ -92,7 +92,7 @@ test('ShipmentProduct toArray includes required and optional fields', function (
         sku: 'SKU-001',
         name: 'Widget',
         quantity: 3,
-        price: 9.99,
+        price: '9.99',
         currency: 'EUR',
     );
 

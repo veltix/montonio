@@ -6,6 +6,7 @@ namespace Veltix\Montonio\Payments\Dto\Response;
 
 use Veltix\Montonio\Payments\Enum\RefundStatus;
 use Veltix\Montonio\Payments\Enum\RefundType;
+use Veltix\Montonio\Support\Decimal;
 
 final readonly class Refund
 {
@@ -23,7 +24,7 @@ final readonly class Refund
     {
         return new self(
             uuid: $data['uuid'],
-            amount: (string) $data['amount'],
+            amount: Decimal::fromValue($data['amount']),
             status: RefundStatus::from($data['status']),
             currency: $data['currency'],
             createdAt: $data['createdAt'],

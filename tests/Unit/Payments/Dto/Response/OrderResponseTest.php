@@ -126,7 +126,7 @@ test('maps LineItem array', function () {
     expect($item)->toBeInstanceOf(LineItem::class)
         ->and($item->name)->toBe('Widget')
         ->and($item->quantity)->toBe(3)
-        ->and($item->finalPrice)->toBe(50.00);
+        ->and($item->finalPrice)->toBe('50');
 });
 
 test('fromArray with docs order-created fixture', function () {
@@ -167,7 +167,7 @@ test('fromArray with docs order-with-refunds fixture', function () {
         ->and($response->refunds[0]->status)->toBe(RefundStatus::SUCCESSFUL)
         ->and($response->refunds[0]->type)->toBe(RefundType::PARTIAL_REFUND)
         ->and($response->refunds[1]->uuid)->toBe('8453465a-a9d8-469e-a838-5b2b5b20f429')
-        ->and($response->availableForRefund)->toBe(50.0)
+        ->and($response->availableForRefund)->toBe('50')
         ->and($response->paymentUrl)->toBeNull();
 });
 
@@ -189,7 +189,7 @@ test('handles null and optional fields', function () {
         ->and($response->storeUuid)->toBeNull()
         ->and($response->paymentIntents)->toBe([])
         ->and($response->refunds)->toBe([])
-        ->and($response->availableForRefund)->toBe(0.0)
+        ->and($response->availableForRefund)->toBe('0')
         ->and($response->isRefundableType)->toBeFalse()
         ->and($response->lineItems)->toBeNull()
         ->and($response->billingAddress)->toBeNull()

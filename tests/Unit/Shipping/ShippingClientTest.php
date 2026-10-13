@@ -129,7 +129,7 @@ test('getCourierServices returns CourierServicesResponse', function () {
 test('filterShippingMethodsByParcels without source', function () {
     [$client, $mock] = shippingClientWithResponse(jsonResponse(200, fixture('Shipping/shipping-methods.json')));
 
-    $request = new FilterByParcelsRequest(parcels: [new FilterParcel(weight: 1.0)]);
+    $request = new FilterByParcelsRequest(parcels: [new FilterParcel(weight: '1.0')]);
     $result = $client->filterShippingMethodsByParcels('EE', $request);
 
     expect($result)->toBeInstanceOf(ShippingMethodsResponse::class);
@@ -142,7 +142,7 @@ test('filterShippingMethodsByParcels without source', function () {
 test('filterShippingMethodsByParcels with source', function () {
     [$client, $mock] = shippingClientWithResponse(jsonResponse(200, fixture('Shipping/shipping-methods.json')));
 
-    $request = new FilterByParcelsRequest(parcels: [new FilterParcel(weight: 2.0)]);
+    $request = new FilterByParcelsRequest(parcels: [new FilterParcel(weight: '2.0')]);
     $client->filterShippingMethodsByParcels('LT', $request, 'EE');
 
     $url = (string) $mock->lastRequest()->getUri();
@@ -155,7 +155,7 @@ test('getShippingRates without optional params', function () {
 
     $request = new ShippingRatesRequest(
         destination: 'EE',
-        parcels: [new RatesParcel(items: [new RatesItem(length: 10, width: 10, height: 10, weight: 1)])],
+        parcels: [new RatesParcel(items: [new RatesItem(length: '10', width: '10', height: '10', weight: '1')])],
     );
     $result = $client->getShippingRates($request);
 
@@ -171,7 +171,7 @@ test('getShippingRates with optional params', function () {
 
     $request = new ShippingRatesRequest(
         destination: 'EE',
-        parcels: [new RatesParcel(items: [new RatesItem(length: 10, width: 10, height: 10, weight: 1)])],
+        parcels: [new RatesParcel(items: [new RatesItem(length: '10', width: '10', height: '10', weight: '1')])],
     );
     $client->getShippingRates($request, 'omniva', ShippingMethodType::PickupPoint);
 
@@ -186,7 +186,7 @@ test('createShipment returns ShipmentResponse', function () {
     $request = new CreateShipmentRequest(
         shippingMethod: new ShipmentShippingMethod(type: ShippingMethodType::Courier, id: 'c-1'),
         receiver: new ShipmentReceiver(name: 'Receiver', phoneCountryCode: '+372', phoneNumber: '456'),
-        parcels: [new ShipmentParcel(weight: 1.0)],
+        parcels: [new ShipmentParcel(weight: '1.0')],
     );
     $result = $client->createShipment($request);
 

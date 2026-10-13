@@ -42,25 +42,25 @@ test('Address with random data roundtrips', function () {
     $array = $address->toArray();
     $restored = Address::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('LineItem with random data roundtrips', function () {
     $lineItem = new LineItem(
         name: fake()->name(),
         quantity: fake()->numberBetween(1, 100),
-        finalPrice: fake()->randomFloat(2, 1, 9999),
+        finalPrice: number_format(fake()->randomFloat(2, 1, 9999), 2, '.', ''),
     );
 
     $array = $lineItem->toArray();
     $restored = LineItem::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('Payment with random data roundtrips', function () {
     $payment = new Payment(
-        amount: fake()->randomFloat(2, 1, 9999),
+        amount: number_format(fake()->randomFloat(2, 1, 9999), 2, '.', ''),
         currency: fake()->randomElement(Currency::cases()),
         method: PaymentMethodCode::PaymentInitiation,
         methodDisplay: fake()->word(),
@@ -73,7 +73,7 @@ test('Payment with random data roundtrips', function () {
     $array = $payment->toArray();
     $restored = Payment::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('PaymentInitiationOptions with random data roundtrips', function () {
@@ -88,7 +88,7 @@ test('PaymentInitiationOptions with random data roundtrips', function () {
     $array = $options->toArray();
     $restored = PaymentInitiationOptions::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('CardPaymentOptions with random data roundtrips', function () {
@@ -99,7 +99,7 @@ test('CardPaymentOptions with random data roundtrips', function () {
     $array = $options->toArray();
     $restored = CardPaymentOptions::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('BlikOptions with random data roundtrips', function () {
@@ -111,7 +111,7 @@ test('BlikOptions with random data roundtrips', function () {
     $array = $options->toArray();
     $restored = BlikOptions::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('BnplOptions with random data roundtrips', function () {
@@ -122,7 +122,7 @@ test('BnplOptions with random data roundtrips', function () {
     $array = $options->toArray();
     $restored = BnplOptions::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('CreateOrderRequest with random data roundtrips', function () {
@@ -130,11 +130,11 @@ test('CreateOrderRequest with random data roundtrips', function () {
         merchantReference: fake()->uuid(),
         returnUrl: fake()->url(),
         notificationUrl: fake()->url(),
-        grandTotal: fake()->randomFloat(2, 1, 9999),
+        grandTotal: number_format(fake()->randomFloat(2, 1, 9999), 2, '.', ''),
         currency: fake()->randomElement(Currency::cases()),
         locale: fake()->randomElement(Locale::cases()),
         payment: new Payment(
-            amount: fake()->randomFloat(2, 1, 9999),
+            amount: number_format(fake()->randomFloat(2, 1, 9999), 2, '.', ''),
             currency: fake()->randomElement(Currency::cases()),
             method: PaymentMethodCode::CardPayments,
             methodOptions: new CardPaymentOptions(
@@ -155,7 +155,7 @@ test('CreateOrderRequest with random data roundtrips', function () {
             new LineItem(
                 name: fake()->word(),
                 quantity: fake()->numberBetween(1, 10),
-                finalPrice: fake()->randomFloat(2, 1, 999),
+                finalPrice: number_format(fake()->randomFloat(2, 1, 999), 2, '.', ''),
             ),
         ],
         expiresIn: fake()->numberBetween(60, 3600),
@@ -165,27 +165,27 @@ test('CreateOrderRequest with random data roundtrips', function () {
     $array = $request->toArray();
     $restored = CreateOrderRequest::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('CreateRefundRequest with random data roundtrips', function () {
     $request = new CreateRefundRequest(
         orderUuid: fake()->uuid(),
-        amount: fake()->randomFloat(2, 1, 9999),
+        amount: number_format(fake()->randomFloat(2, 1, 9999), 2, '.', ''),
         idempotencyKey: fake()->uuid(),
     );
 
     $array = $request->toArray();
     $restored = CreateRefundRequest::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('CreatePaymentLinkRequest with random data roundtrips', function () {
     $request = new CreatePaymentLinkRequest(
         description: fake()->sentence(),
         currency: fake()->randomElement(Currency::cases()),
-        amount: fake()->randomFloat(2, 1, 9999),
+        amount: number_format(fake()->randomFloat(2, 1, 9999), 2, '.', ''),
         locale: fake()->randomElement(Locale::cases()),
         askAdditionalInfo: fake()->boolean(),
         expiresAt: fake()->iso8601(),
@@ -201,7 +201,7 @@ test('CreatePaymentLinkRequest with random data roundtrips', function () {
     $array = $request->toArray();
     $restored = CreatePaymentLinkRequest::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('PaymentWebhookPayload with random data', function () {
@@ -228,7 +228,7 @@ test('PaymentWebhookPayload with random data', function () {
         ->and($payload->accessKey)->toBe($data->accessKey)
         ->and($payload->merchantReference)->toBe($data->merchantReference)
         ->and($payload->paymentStatus)->toBe(PaymentStatus::from($data->paymentStatus))
-        ->and($payload->grandTotal)->toBe((float) $data->grandTotal)
+        ->and($payload->grandTotal)->toEqual((string) $data->grandTotal)
         ->and($payload->currency)->toBe($data->currency);
 });
 
@@ -238,11 +238,11 @@ test('multiple random iterations produce valid DTOs', function () {
             merchantReference: fake()->uuid(),
             returnUrl: fake()->url(),
             notificationUrl: fake()->url(),
-            grandTotal: fake()->randomFloat(2, 1, 9999),
+            grandTotal: number_format(fake()->randomFloat(2, 1, 9999), 2, '.', ''),
             currency: fake()->randomElement(Currency::cases()),
             locale: fake()->randomElement(Locale::cases()),
             payment: new Payment(
-                amount: fake()->randomFloat(2, 1, 9999),
+                amount: number_format(fake()->randomFloat(2, 1, 9999), 2, '.', ''),
                 currency: fake()->randomElement(Currency::cases()),
                 method: fake()->randomElement(PaymentMethodCode::cases()),
             ),
@@ -251,6 +251,6 @@ test('multiple random iterations produce valid DTOs', function () {
         $array = $request->toArray();
         $restored = CreateOrderRequest::fromArray($array);
 
-        expect($restored->toArray())->toBe($array);
+        expect($restored->toArray())->toEqual($array);
     }
 });

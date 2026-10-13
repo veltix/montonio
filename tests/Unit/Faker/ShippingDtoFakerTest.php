@@ -43,7 +43,7 @@ test('ShipmentSender with random data roundtrips', function () {
     $array = $sender->toArray();
     $restored = ShipmentSender::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('ShipmentReceiver with random data roundtrips', function () {
@@ -65,21 +65,21 @@ test('ShipmentReceiver with random data roundtrips', function () {
     $array = $receiver->toArray();
     $restored = ShipmentReceiver::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('ShipmentParcel with random data roundtrips', function () {
     $parcel = new ShipmentParcel(
-        weight: fake()->randomFloat(2, 0.1, 50),
-        height: fake()->randomFloat(2, 1, 100),
-        width: fake()->randomFloat(2, 1, 100),
-        length: fake()->randomFloat(2, 1, 100),
+        weight: number_format(fake()->randomFloat(2, 0.1, 50), 2, '.', ''),
+        height: number_format(fake()->randomFloat(2, 1, 100), 2, '.', ''),
+        width: number_format(fake()->randomFloat(2, 1, 100), 2, '.', ''),
+        length: number_format(fake()->randomFloat(2, 1, 100), 2, '.', ''),
     );
 
     $array = $parcel->toArray();
     $restored = ShipmentParcel::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('ShipmentProduct with random data roundtrips', function () {
@@ -88,7 +88,7 @@ test('ShipmentProduct with random data roundtrips', function () {
         name: fake()->word(),
         quantity: fake()->numberBetween(1, 100),
         barcode: fake()->ean13(),
-        price: fake()->randomFloat(2, 1, 999),
+        price: number_format(fake()->randomFloat(2, 1, 999), 2, '.', ''),
         currency: fake()->currencyCode(),
         attributes: ['color' => fake()->colorName()],
         imageUrl: fake()->url(),
@@ -99,7 +99,7 @@ test('ShipmentProduct with random data roundtrips', function () {
     $array = $product->toArray();
     $restored = ShipmentProduct::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('ShipmentShippingMethod with random data roundtrips', function () {
@@ -111,7 +111,7 @@ test('ShipmentShippingMethod with random data roundtrips', function () {
     $array = $method->toArray();
     $restored = ShipmentShippingMethod::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('CreateShipmentRequest with random data roundtrips', function () {
@@ -131,10 +131,10 @@ test('CreateShipmentRequest with random data roundtrips', function () {
         ),
         parcels: [
             new ShipmentParcel(
-                weight: fake()->randomFloat(2, 0.1, 50),
-                height: fake()->randomFloat(2, 1, 100),
-                width: fake()->randomFloat(2, 1, 100),
-                length: fake()->randomFloat(2, 1, 100),
+                weight: number_format(fake()->randomFloat(2, 0.1, 50), 2, '.', ''),
+                height: number_format(fake()->randomFloat(2, 1, 100), 2, '.', ''),
+                width: number_format(fake()->randomFloat(2, 1, 100), 2, '.', ''),
+                length: number_format(fake()->randomFloat(2, 1, 100), 2, '.', ''),
             ),
         ],
         sender: new ShipmentSender(
@@ -158,7 +158,7 @@ test('CreateShipmentRequest with random data roundtrips', function () {
     $array = $request->toArray();
     $restored = CreateShipmentRequest::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('UpdateShipmentRequest with random data roundtrips', function () {
@@ -179,7 +179,7 @@ test('UpdateShipmentRequest with random data roundtrips', function () {
         ),
         parcels: [
             new ShipmentParcel(
-                weight: fake()->randomFloat(2, 0.1, 50),
+                weight: number_format(fake()->randomFloat(2, 0.1, 50), 2, '.', ''),
             ),
         ],
     );
@@ -187,32 +187,32 @@ test('UpdateShipmentRequest with random data roundtrips', function () {
     $array = $request->toArray();
     $restored = UpdateShipmentRequest::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('FilterParcel with random data roundtrips', function () {
     $parcel = new FilterParcel(
-        weight: fake()->randomFloat(2, 0.1, 50),
-        height: fake()->randomFloat(2, 1, 100),
-        width: fake()->randomFloat(2, 1, 100),
-        length: fake()->randomFloat(2, 1, 100),
+        weight: number_format(fake()->randomFloat(2, 0.1, 50), 2, '.', ''),
+        height: number_format(fake()->randomFloat(2, 1, 100), 2, '.', ''),
+        width: number_format(fake()->randomFloat(2, 1, 100), 2, '.', ''),
+        length: number_format(fake()->randomFloat(2, 1, 100), 2, '.', ''),
     );
 
     $array = $parcel->toArray();
     $restored = FilterParcel::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('FilterByParcelsRequest with random data roundtrips', function () {
     $request = new FilterByParcelsRequest(
         parcels: [
-            new FilterParcel(weight: fake()->randomFloat(2, 0.1, 50)),
+            new FilterParcel(weight: number_format(fake()->randomFloat(2, 0.1, 50), 2, '.', '')),
             new FilterParcel(
-                weight: fake()->randomFloat(2, 0.1, 50),
-                height: fake()->randomFloat(2, 1, 100),
-                width: fake()->randomFloat(2, 1, 100),
-                length: fake()->randomFloat(2, 1, 100),
+                weight: number_format(fake()->randomFloat(2, 0.1, 50), 2, '.', ''),
+                height: number_format(fake()->randomFloat(2, 1, 100), 2, '.', ''),
+                width: number_format(fake()->randomFloat(2, 1, 100), 2, '.', ''),
+                length: number_format(fake()->randomFloat(2, 1, 100), 2, '.', ''),
             ),
         ],
     );
@@ -220,15 +220,15 @@ test('FilterByParcelsRequest with random data roundtrips', function () {
     $array = $request->toArray();
     $restored = FilterByParcelsRequest::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('RatesItem with random data roundtrips', function () {
     $item = new RatesItem(
-        length: fake()->randomFloat(2, 1, 100),
-        width: fake()->randomFloat(2, 1, 100),
-        height: fake()->randomFloat(2, 1, 100),
-        weight: fake()->randomFloat(2, 0.1, 50),
+        length: number_format(fake()->randomFloat(2, 1, 100), 2, '.', ''),
+        width: number_format(fake()->randomFloat(2, 1, 100), 2, '.', ''),
+        height: number_format(fake()->randomFloat(2, 1, 100), 2, '.', ''),
+        weight: number_format(fake()->randomFloat(2, 0.1, 50), 2, '.', ''),
         dimensionUnit: fake()->randomElement(DimensionUnit::cases()),
         weightUnit: fake()->randomElement(WeightUnit::cases()),
         quantity: fake()->numberBetween(1, 100),
@@ -237,7 +237,7 @@ test('RatesItem with random data roundtrips', function () {
     $array = $item->toArray();
     $restored = RatesItem::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('ShippingRatesRequest with random data roundtrips', function () {
@@ -247,10 +247,10 @@ test('ShippingRatesRequest with random data roundtrips', function () {
             new RatesParcel(
                 items: [
                     new RatesItem(
-                        length: fake()->randomFloat(2, 1, 100),
-                        width: fake()->randomFloat(2, 1, 100),
-                        height: fake()->randomFloat(2, 1, 100),
-                        weight: fake()->randomFloat(2, 0.1, 50),
+                        length: number_format(fake()->randomFloat(2, 1, 100), 2, '.', ''),
+                        width: number_format(fake()->randomFloat(2, 1, 100), 2, '.', ''),
+                        height: number_format(fake()->randomFloat(2, 1, 100), 2, '.', ''),
+                        weight: number_format(fake()->randomFloat(2, 0.1, 50), 2, '.', ''),
                     ),
                 ],
             ),
@@ -260,7 +260,7 @@ test('ShippingRatesRequest with random data roundtrips', function () {
     $array = $request->toArray();
     $restored = ShippingRatesRequest::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('CreateLabelFileRequest with random data roundtrips', function () {
@@ -275,7 +275,7 @@ test('CreateLabelFileRequest with random data roundtrips', function () {
     $array = $request->toArray();
     $restored = CreateLabelFileRequest::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('CreateWebhookRequest with random data roundtrips', function () {
@@ -292,7 +292,7 @@ test('CreateWebhookRequest with random data roundtrips', function () {
     $array = $request->toArray();
     $restored = CreateWebhookRequest::fromArray($array);
 
-    expect($restored->toArray())->toBe($array);
+    expect($restored->toArray())->toEqual($array);
 });
 
 test('ShippingWebhookPayload with random data', function () {

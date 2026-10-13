@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Veltix\Montonio\Payments\Dto\Response;
 
+use Veltix\Montonio\Support\Decimal;
+
 final readonly class BalanceEntry
 {
     public function __construct(
         public string $currency,
-        public float $balance,
+        public string $balance,
     ) {}
 
     /** @param array<string, mixed> $data */
@@ -16,7 +18,7 @@ final readonly class BalanceEntry
     {
         return new self(
             currency: $data['currency'],
-            balance: (float) $data['balance'],
+            balance: Decimal::fromValue($data['balance']),
         );
     }
 }

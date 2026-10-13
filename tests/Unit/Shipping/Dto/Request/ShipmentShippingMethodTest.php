@@ -23,7 +23,7 @@ test('toArray includes additionalServices with CodParams', function () {
         additionalServices: [
             new AdditionalService(
                 code: AdditionalServiceCode::Cod,
-                params: new CodParams(amount: 15.99),
+                params: new CodParams(amount: '15.99'),
             ),
             new AdditionalService(code: AdditionalServiceCode::AgeVerification),
         ],
@@ -76,7 +76,7 @@ test('fromArray creates full method', function () {
         ->and($method->id)->toBe('pp-omniva-ee-123')
         ->and($method->additionalServices)->toHaveCount(1)
         ->and($method->additionalServices[0]->code)->toBe(AdditionalServiceCode::Cod)
-        ->and($method->additionalServices[0]->params->amount)->toBe(25.00)
+        ->and($method->additionalServices[0]->params->amount)->toBe('25')
         ->and($method->parcelHandoverMethod)->toBe(ParcelHandoverMethod::TerminalDropOff)
         ->and($method->lockerSize)->toBe(LockerSize::L);
 });

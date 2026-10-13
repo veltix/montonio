@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Veltix\Montonio\Shipping\Dto\Response;
 
+use Veltix\Montonio\Support\Decimal;
+
 final readonly class ShippingMethodSubtype
 {
     public function __construct(
         public string $code,
-        public ?float $rate = null,
+        public ?string $rate = null,
         public ?string $currency = null,
     ) {}
 
@@ -17,7 +19,7 @@ final readonly class ShippingMethodSubtype
     {
         return new self(
             code: $data['code'],
-            rate: isset($data['rate']) ? (float) $data['rate'] : null,
+            rate: isset($data['rate']) ? Decimal::fromValue($data['rate']) : null,
             currency: $data['currency'] ?? null,
         );
     }

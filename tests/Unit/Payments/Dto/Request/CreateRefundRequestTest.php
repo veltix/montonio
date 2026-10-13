@@ -7,7 +7,7 @@ use Veltix\Montonio\Payments\Dto\Request\CreateRefundRequest;
 test('toArray returns all fields', function () {
     $request = new CreateRefundRequest(
         orderUuid: 'order-uuid-123',
-        amount: 25.50,
+        amount: '25.50',
         idempotencyKey: 'idem-key-456',
     );
 
@@ -26,15 +26,15 @@ test('fromArray creates request', function () {
     ]);
 
     expect($request->orderUuid)->toBe('uuid-1')
-        ->and($request->amount)->toBe(10.00)
+        ->and($request->amount)->toBe('10.00')
         ->and($request->idempotencyKey)->toBe('key-1');
 });
 
 test('roundtrip toArray/fromArray', function () {
-    $original = new CreateRefundRequest(orderUuid: 'uuid', amount: 5.99, idempotencyKey: 'key');
+    $original = new CreateRefundRequest(orderUuid: 'uuid', amount: '5.99', idempotencyKey: 'key');
     $restored = CreateRefundRequest::fromArray($original->toArray());
 
     expect($restored->orderUuid)->toBe($original->orderUuid)
-        ->and($restored->amount)->toBe($original->amount)
+        ->and((float) $restored->amount)->toBe((float) $original->amount)
         ->and($restored->idempotencyKey)->toBe($original->idempotencyKey);
 });

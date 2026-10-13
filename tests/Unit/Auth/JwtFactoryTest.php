@@ -32,7 +32,7 @@ test('data token merges payload with standard claims', function () {
     $decoded = JWT::decode($token, new Key($config->secretKey, 'HS256'));
 
     expect($decoded->foo)->toBe('bar')
-        ->and($decoded->amount)->toBe(12.50)
+        ->and($decoded->amount)->toBe(12.5)
         ->and($decoded->accessKey)->toBe('test_access_key')
         ->and($decoded->iat)->toBeInt()
         ->and($decoded->exp)->toBeInt();

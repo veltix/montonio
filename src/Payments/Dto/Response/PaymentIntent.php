@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Veltix\Montonio\Payments\Dto\Response;
 
+use Veltix\Montonio\Support\Decimal;
+
 final readonly class PaymentIntent
 {
     /** @param array<string, mixed>|null $paymentMethodMetadata */
@@ -26,10 +28,10 @@ final readonly class PaymentIntent
             uuid: $data['uuid'],
             paymentMethodType: $data['paymentMethodType'],
             paymentMethodMetadata: $data['paymentMethodMetadata'] ?? null,
-            amount: (string) $data['amount'],
+            amount: Decimal::fromValue($data['amount']),
             currency: $data['currency'],
             status: $data['status'],
-            serviceFee: $data['serviceFee'] ?? null,
+            serviceFee: isset($data['serviceFee']) ? Decimal::fromValue($data['serviceFee']) : null,
             serviceFeeCurrency: $data['serviceFeeCurrency'] ?? null,
             createdAt: $data['createdAt'],
         );

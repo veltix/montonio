@@ -6,11 +6,12 @@ namespace Veltix\Montonio\Payments\Dto\Request;
 
 use Veltix\Montonio\Payments\Enum\Currency;
 use Veltix\Montonio\Payments\Enum\PaymentMethodCode;
+use Veltix\Montonio\Support\Decimal;
 
 final readonly class Payment
 {
     public function __construct(
-        public float $amount,
+        public string $amount,
         public Currency $currency,
         public PaymentMethodCode $method,
         public ?string $methodDisplay = null,
@@ -21,7 +22,7 @@ final readonly class Payment
     public function toArray(): array
     {
         $data = [
-            'amount' => $this->amount,
+            'amount' => Decimal::toNumber($this->amount),
             'currency' => $this->currency->value,
             'method' => $this->method->value,
         ];
@@ -52,7 +53,7 @@ final readonly class Payment
         }
 
         return new self(
-            amount: (float) $data['amount'],
+            amount: Decimal::fromValue($data['amount']),
             currency: Currency::from($data['currency']),
             method: PaymentMethodCode::from($data['method']),
             methodDisplay: $data['methodDisplay'] ?? null,

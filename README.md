@@ -8,6 +8,7 @@ A strictly-typed PHP SDK for the [Montonio](https://montonio.com) Payments and S
 - **Shipping API** — Create/update shipments, generate labels, manage webhooks; query carriers, shipping methods, pickup points, courier services, shipping rates
 - **Webhook Verification** — JWT-based verification for both payment and shipping webhook payloads
 - **Immutable DTOs** — All request and response objects are `final readonly` classes
+- **Exact decimals** — Amounts, rates and measures are decimal strings (`'29.99'`), never floats: requests write them as JSON numbers, responses and webhook tokens keep the digits Montonio sent
 - **String-Backed Enums** — Payment statuses, currencies, locales, shipping methods, and more
 - **PSR Compliant** — Uses PSR-7 (HTTP Messages), PSR-17 (HTTP Factories), and PSR-18 (HTTP Client)
 - **Exception Hierarchy** — Typed exceptions mapped to HTTP status codes
@@ -84,16 +85,16 @@ $order = $montonio->payments()->createOrder(new CreateOrderRequest(
     merchantReference: 'ORDER-123',
     returnUrl: 'https://example.com/return',
     notificationUrl: 'https://example.com/webhook',
-    grandTotal: 29.99,
+    grandTotal: '29.99',
     currency: Currency::EUR,
     locale: Locale::EN,
     payment: new Payment(
-        amount: 29.99,
+        amount: '29.99',
         currency: Currency::EUR,
         method: PaymentMethodCode::PaymentInitiation,
     ),
     lineItems: [
-        new LineItem(name: 'Product A', quantity: 1, finalPrice: 29.99),
+        new LineItem(name: 'Product A', quantity: 1, finalPrice: '29.99'),
     ],
 ));
 
@@ -137,7 +138,7 @@ use Veltix\Montonio\Payments\Dto\Request\CreateRefundRequest;
 
 $refund = $montonio->payments()->createRefund(new CreateRefundRequest(
     orderUuid: $order->uuid,
-    amount: 10.00,
+    amount: '10.00',
     idempotencyKey: 'refund-unique-key',
 ));
 ```
@@ -152,7 +153,7 @@ use Veltix\Montonio\Payments\Enum\Locale;
 $link = $montonio->payments()->createPaymentLink(new CreatePaymentLinkRequest(
     description: 'Invoice #456',
     currency: Currency::EUR,
-    amount: 50.00,
+    amount: '50.00',
     locale: Locale::EN,
     askAdditionalInfo: false,
     expiresAt: '2025-12-31T23:59:59Z',
@@ -182,7 +183,7 @@ $shipment = $montonio->shipping()->createShipment(new CreateShipmentRequest(
         email: 'jane@example.com',
     ),
     parcels: [
-        new ShipmentParcel(weight: 1.5),
+        new ShipmentParcel(weight: '1.5'),
     ],
     merchantReference: 'SHIP-789',
 ));
@@ -260,7 +261,7 @@ foreach ($response->countries as $country) {
             // Subtypes with optional rates
             foreach ($method->subtypes ?? [] as $subtype) {
                 echo $subtype->code;     // e.g. "parcelMachine", "standard"
-                echo $subtype->rate;     // Price as float (nullable)
+                echo $subtype->rate;     // Price as a decimal string, e.g. "2.50" (nullable)
                 echo $subtype->currency; // e.g. "EUR" (nullable)
             }
 

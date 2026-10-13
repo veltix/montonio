@@ -30,7 +30,7 @@ test('fromObject maps all fields', function () {
         ->and($payload->merchantReference)->toBe('ref-1')
         ->and($payload->merchantReferenceDisplay)->toBe('REF-1')
         ->and($payload->paymentMethod)->toBe('paymentInitiation')
-        ->and($payload->grandTotal)->toBe(99.99)
+        ->and($payload->grandTotal)->toBe('99.99')
         ->and($payload->currency)->toBe('EUR')
         ->and($payload->senderIban)->toBe('EE12345')
         ->and($payload->senderName)->toBe('John Doe')
@@ -93,8 +93,8 @@ test('casts grandTotal to float and iat/exp to int', function () {
 
     $payload = PaymentWebhookPayload::fromObject($data);
 
-    expect($payload->grandTotal)->toBe(123.45)
-        ->and($payload->grandTotal)->toBeFloat()
+    expect($payload->grandTotal)->toBe('123.45')
+        ->and($payload->grandTotal)->toBeString()
         ->and($payload->iat)->toBe(1700000000)
         ->and($payload->iat)->toBeInt()
         ->and($payload->exp)->toBe(1700003600)
@@ -112,7 +112,7 @@ test('fromObject with docs fixture', function () {
         ->and($payload->merchantReference)->toBe('MY-ORDER-ID-123')
         ->and($payload->paymentStatus)->toBe(PaymentStatus::PAID)
         ->and($payload->paymentMethod)->toBe('paymentInitiation')
-        ->and($payload->grandTotal)->toBe(99.99)
+        ->and($payload->grandTotal)->toBe('99.99')
         ->and($payload->currency)->toBe('EUR')
         ->and($payload->senderIban)->toBe('EE471000001020145685')
         ->and($payload->senderName)->toBe('John Doe')

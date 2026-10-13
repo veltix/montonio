@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Veltix\Montonio\Payments\Dto\Request;
 
+use Veltix\Montonio\Support\Decimal;
+
 final readonly class LineItem
 {
     public function __construct(
         public string $name,
         public int $quantity,
-        public float $finalPrice,
+        public string $finalPrice,
     ) {}
 
     /** @return array<string, mixed> */
@@ -18,7 +20,7 @@ final readonly class LineItem
         return [
             'name' => $this->name,
             'quantity' => $this->quantity,
-            'finalPrice' => $this->finalPrice,
+            'finalPrice' => Decimal::toNumber($this->finalPrice),
         ];
     }
 
@@ -28,7 +30,7 @@ final readonly class LineItem
         return new self(
             name: $data['name'],
             quantity: $data['quantity'],
-            finalPrice: (float) $data['finalPrice'],
+            finalPrice: Decimal::fromValue($data['finalPrice']),
         );
     }
 }

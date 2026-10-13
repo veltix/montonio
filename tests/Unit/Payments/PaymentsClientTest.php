@@ -20,6 +20,7 @@ use Veltix\Montonio\Payments\Dto\Response\StoreBalancesResponse;
 use Veltix\Montonio\Payments\Enum\Currency;
 use Veltix\Montonio\Payments\Enum\Locale;
 use Veltix\Montonio\Payments\Enum\PaymentMethodCode;
+use Veltix\Montonio\Payments\Enum\PaymentStatus;
 use Veltix\Montonio\Payments\Enum\PayoutExportType;
 use Veltix\Montonio\Payments\Enum\PayoutSortBy;
 use Veltix\Montonio\Payments\Enum\PayoutSortOrder;
@@ -64,10 +65,10 @@ test('createOrder returns OrderResponse', function () {
         merchantReference: 'ref-1',
         returnUrl: 'https://example.com/return',
         notificationUrl: 'https://example.com/notify',
-        grandTotal: 100.00,
+        grandTotal: '100.00',
         currency: Currency::EUR,
         locale: Locale::EN,
-        payment: new Payment(amount: 100.00, currency: Currency::EUR, method: PaymentMethodCode::PaymentInitiation),
+        payment: new Payment(amount: '100.00', currency: Currency::EUR, method: PaymentMethodCode::PaymentInitiation),
     );
 
     $result = $client->createOrder($request);
@@ -85,7 +86,7 @@ test('getOrder returns OrderResponse', function () {
 
     expect($result)->toBeInstanceOf(OrderResponse::class)
         ->and($result->uuid)->toBe('0ac2124d-9f8e-4a29-816d-7eef5b9bb0fd')
-        ->and($result->paymentStatus)->toBe(\Veltix\Montonio\Payments\Enum\PaymentStatus::PARTIALLY_REFUNDED)
+        ->and($result->paymentStatus)->toBe(PaymentStatus::PARTIALLY_REFUNDED)
         ->and($result->refunds)->toHaveCount(2)
         ->and((string) $mock->lastRequest()->getUri())->toContain('/orders/0ac2124d-9f8e-4a29-816d-7eef5b9bb0fd');
 });
@@ -95,7 +96,7 @@ test('createRefund returns RefundResponse', function () {
 
     $request = new CreateRefundRequest(
         orderUuid: 'order-1',
-        amount: 25.00,
+        amount: '25.00',
         idempotencyKey: 'idem-1',
     );
 
@@ -112,7 +113,7 @@ test('createPaymentLink returns PaymentLinkResponse', function () {
     $request = new CreatePaymentLinkRequest(
         description: 'Test',
         currency: Currency::EUR,
-        amount: 10.00,
+        amount: '10.00',
         locale: Locale::EN,
         askAdditionalInfo: false,
         expiresAt: '2025-12-31T23:59:59Z',
